@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 // start server
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
@@ -34,11 +34,11 @@ app.get("/webhook", (req, res) => {
 // POST route to handle webhook calls.
 app.post("/webhook", async (req, res) => {
   try {
-    console.log(req.body.entry[0].changes[0].value);
+    console.log(req.body.entry[0]);
 
     // Send message received from webhooks to slack channel
     await Axios.post(
-      `https://hooks.slack.com/services/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`,
+      `https://hooks.slack.com/services/${process.env.API_KEY}`,
       {
         blocks: [
           {
@@ -51,6 +51,7 @@ app.post("/webhook", async (req, res) => {
         ],
       }
     );
+
     res.status(200).end();
   } catch (error) {
     console.error(error);
