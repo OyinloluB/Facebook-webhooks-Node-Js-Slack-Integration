@@ -9,6 +9,10 @@ const PORT = process.env.PORT || 5000;
 // start server
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
+app.get("/", (req, res) => {
+  res.send("Welcome");
+});
+
 // GET route to register the callback URL with Facebook.
 app.get("/webhook", (req, res) => {
   const VERIFY_TOKEN = "random string";
