@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 
 // GET route to register the callback URL with Facebook.
 app.get("/webhook", (req, res) => {
+
   const VERIFY_TOKEN = "random string";
   // Parse the query params
   const mode = req.query["hub.mode"];
@@ -38,11 +39,11 @@ app.get("/webhook", (req, res) => {
 // POST route to handle webhook calls.
 app.post("/webhook", async (req, res) => {
   try {
-    console.log(req.body.entry[0]);
+    console.log(req.body.entry[0], process.env.SLACK_WEB_HOOK);
 
     // Send message received from webhooks to slack channel
     await Axios.post(
-      `https://hooks.slack.com/services/${process.env.API_KEY}`,
+      `https://hooks.slack.com/services/${process.env.SLACK_WEB_HOOK}`,
       {
         blocks: [
           {
