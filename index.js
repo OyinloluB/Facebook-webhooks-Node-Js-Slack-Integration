@@ -39,23 +39,23 @@ app.get("/webhook", (req, res) => {
 // POST route to handle webhook calls.
 app.post("/webhook", async (req, res) => {
   try {
-    console.log(req.body.entry[0], process.env.SLACK_WEB_HOOK);
+    console.log(req.body.entry);
 
     // Send message received from webhooks to slack channel
-    await Axios.post(
-      `https://hooks.slack.com/services/${process.env.SLACK_WEB_HOOK}`,
-      {
-        blocks: [
-          {
-            type: "section",
-            text: {
-              type: "mrkdwn",
-              text: `${req.body.entry[0].changes[0].value.error_message}`,
-            },
-          },
-        ],
-      }
-    );
+    // await Axios.post(
+    //   `https://hooks.slack.com/services/${process.env.SLACK_WEB_HOOK}`,
+    //   {
+    //     blocks: [
+    //       {
+    //         type: "section",
+    //         text: {
+    //           type: "mrkdwn",
+    //           text: `${req.body.entry[0].changes[0].value.error_message}`,
+    //         },
+    //       },
+    //     ],
+    //   }
+    // );
 
     res.status(200).end();
   } catch (error) {
