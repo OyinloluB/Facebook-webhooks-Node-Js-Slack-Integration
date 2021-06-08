@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 // GET route to register the callback URL with Facebook.
 app.get("/webhook", (req, res) => {
 
-  const VERIFY_TOKEN = "EAAE1n3c63ggBAMnVNlAyI8TWC4HmZCLbgg2SNRbA9tALZC07MEOWEyGjdAs9a5N51w3doLQBElpbf2OfPxwIUtyOuGFeNaHgj07ZBNVH0jxbC0YfliiFNjEPKyBobndwuyZANUo02xkwiS2SypMeoaehvdfJT18KxrO2ZCIYNIfGLQVcZC4A84";
+  const VERIFY_TOKEN = "random string";
   // Parse the query params
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
