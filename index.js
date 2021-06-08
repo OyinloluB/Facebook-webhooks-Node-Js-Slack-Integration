@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 // GET route to register the callback URL with Facebook.
 app.get("/webhook", (req, res) => {
 
-  const VERIFY_TOKEN = "random string";
+  const VERIFY_TOKEN = "EAAE1n3c63ggBAPGty3FphGQOL1WTTDYUQt8pEHvp0wZBInuOpzXhlBZCoImnMmyCq8Y2YjRjRM9NgPHY2M0bRUBUQVwrlff5pPjVVAXBmejtJRC90pJ4f2lJoK7PWiKWCyNWj2UCaqWPZCZC9xA4EcGVirms93TqdEqNDF4X1kj63pi6qMDY";
   // Parse the query params
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
@@ -42,20 +42,20 @@ app.post("/webhook", async (req, res) => {
     console.log(req.body.entry);
 
     // Send message received from webhooks to slack channel
-    // await Axios.post(
-    //   `https://hooks.slack.com/services/${process.env.SLACK_WEB_HOOK}`,
-    //   {
-    //     blocks: [
-    //       {
-    //         type: "section",
-    //         text: {
-    //           type: "mrkdwn",
-    //           text: `${req.body.entry[0].changes[0].value.error_message}`,
-    //         },
-    //       },
-    //     ],
-    //   }
-    // );
+//     await Axios.post(
+//       `https://hooks.slack.com/services/${process.env.SLACK_WEB_HOOK}`,
+//       {
+//         blocks: [
+//           {
+//             type: "section",
+//             text: {
+//               type: "mrkdwn",
+//               text: `${req.body.entry[0].changes[0].value.error_message}`,
+//             },
+//           },
+//         ],
+//       }
+//     );
 
     res.status(200).end();
   } catch (error) {
